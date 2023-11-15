@@ -1,55 +1,37 @@
-alfavit_eng =  'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ'
-alfavit_ru = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'
-alfavit_kz = 'АӘБДГҒЕЁЖЗИЙКҚЛМНҢОӨПРСТҰҮФХҺЦЧШЩЪЫІЬЭЮЯАӘБДГҒЕЁЖЗИЙКҚЛМНҢОӨПРСТҰҮФХҺЦЧШЩЪЫІЬЭЮЯ'
-
-l = input("Change RU, KZ or ENG: ").upper()
-itog = ''    #создаем переменную для вывода итогового сообщения
-
-if l == "RU":
-    message = input("Введите сообщение: ").upper()    #создаем переменнную, куда запишем наше сообщение
-    smeshenie = int(13)    #Создаем переменную с шагом шифровки
-    for i in message:
-        mesto = alfavit_ru.find(i)  
-        new_mesto = mesto + smeshenie
-        if i in alfavit_ru:
-            itog += alfavit_ru[new_mesto]  # Задаем значения в итог
+def rot13(text, direction=1):
+    result = ''
+    for char in text:
+        if char.isalpha():
+            is_upper = char.isupper()
+            index = symbols.find(char.lower())
+            
+            # Применяем шифр ROT13 в зависимости от направления (шифровка или расшифровка)
+            new_index = (index + direction * 13) % len(symbols)
+            
+            result += symbols[new_index].upper() if is_upper else symbols[new_index]
         else:
-            itog += i
-    
-if l == "KZ":
-    message = input("Мәтінді енгізіңіз: ").upper()    #создаем переменнную, куда запишем наше сообщение
-    smeshenie = int(20)    #Создаем переменную с шагом шифровки
-    for i in message:
-        mesto = alfavit_kz.find(i)  
-        new_mesto = mesto + smeshenie
-        if i in alfavit_kz:
-            itog += alfavit_kz[new_mesto]  # Задаем значения в итог
-        else:
-            itog += i
+            result += char
+    return result
 
-if l == "ENG":
-    message = input("Type the text: ").upper()    #создаем переменнную, куда запишем наше сообщение
-    smeshenie = int(13)    #Создаем переменную с шагом шифровки
-    for i in message:
-        mesto = alfavit_eng.find(i)  
-        new_mesto = mesto + smeshenie
-        if i in alfavit_eng:
-            itog += alfavit_eng[new_mesto]  # Задаем значения в итог
-        else:
-            itog += i
+# Ваш алфавит
+symbols = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяbdfghijklmnpqrstuvwxyzәғқңөұүАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯBDFGHIJKLMNPQRSTUVWXYZӘҒҚҢӨҰҮ"
 
-else:
-    print("Invalid language. Try again.")
+# Функция для шифровки текста
+def encrypt(text):
+    return rot13(text, direction=1)
 
-print (itog) 
+# Функция для расшифровки текста
+def decrypt(text):
+    return rot13(text, direction=-1)
 
-'''for i in message:
-    mesto = alfavit.find(i)  
-    new_mesto = mesto + smeshenie
-    if i in alfavit:
-        itog += alfavit[new_mesto]  # Задаем значения в итог
-    else:
-        itog += i
-print (itog)'''
+zadacha = 
 
-# symbol.find(i)
+# Пример использования
+text = input("Введите текст: ")
+print("Исходный текст:", text)
+
+encrypted_text = encrypt(text)
+print("Зашифрованный текст:", encrypted_text)
+
+decrypt_text = decrypt(encrypted_text)
+print("Расшифрованный текст: ", decrypt_text)
