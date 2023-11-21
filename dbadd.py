@@ -18,11 +18,14 @@ def rot13(text, direction=1):
             result += char
     return result
 
+
+
 LATIN_SYMBOLS = "abcdefghijklmnopqrstuvwxyz"
 LATIN_LARGE_SYMBOLS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-CYRILLIC_SYMBOLS = "бвгдёжзийклмнптфцчшщъыьэюя"
-CYRILLIC_LARGE_SYMBOLS = "БГДЁЖЗИЙЛНПУФЦЧШЩЪЫЬЭЮЯ"
-SYMBOLS = LATIN_SYMBOLS + CYRILLIC_SYMBOLS + CYRILLIC_LARGE_SYMBOLS + LATIN_LARGE_SYMBOLS
+CYRILLIC_SYMBOLS = "абвгедёжзийколмнптфцчшщъыьэюя"
+CYRILLIC_LARGE_SYMBOLS = "БГДЕЁЖЗИЙОЛПУФЦЧШЩЪЫЬЭЮЯ"
+SYMBOLS = LATIN_SYMBOLS + LATIN_LARGE_SYMBOLS + CYRILLIC_SYMBOLS + CYRILLIC_LARGE_SYMBOLS 
+
 
 # Функция для шифровки текста
 def encrypt(text):
